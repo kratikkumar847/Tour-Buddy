@@ -122,4 +122,15 @@ form .text h3 a{
 form .text h3 a:hover{
   text-decoration: underline;
 }
+
+@media screen and (max-width: 768px){
+  .wrapper{
+    margin-left: 0;
+    margin-top: 100px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
 </style>

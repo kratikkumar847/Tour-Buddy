@@ -60,6 +60,17 @@ p {
 }
 
 .second {
+    background-color: rgb(231, 67, 67);
+    width: 40%;
+    text-align: center;
+}
+
+.first {
+    background-color: rgb(224, 112, 112);
+    width: 60%;
+}
+
+.second {
     display: flex;
     height: 80vh;
     justify-content: center;
@@ -68,7 +79,7 @@ p {
 }
 
 .main-heading {
-    width: 300px;
+    width: 100%;
     height: 60px;
     text-align: center;
     padding: 20px;
@@ -176,22 +187,35 @@ input {
     height: 80%;
 }
 
-.second {
-    background-color: rgb(231, 67, 67);
-    width: 40%;
-    text-align: center;
-}
 
-.first {
-    background-color: rgb(224, 112, 112);
-    width: 60%;
-}
 
 img {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;
+}
+
+
+/* CSS for the Mobile View  */
+@media screen and (max-width: 768px) {
+    .small-container{
+        /* flex-wrap: wrap;
+        flex-direction : column; */
+    }
+    .main-container{
+        height: 100vh;
+    }
+
+    .first{
+        width: 0%;
+    }
+
+    .second{
+        width: 100%;
+        height: 80vh;
+    }
+
 }
 
 
