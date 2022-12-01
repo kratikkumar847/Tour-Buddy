@@ -11,18 +11,18 @@
                         </div>
                         <div class="container">
                             <div class="title">Login</div>
-                                <form action="#" class="">
+                                <form action="#" method="post">
                                     <div class="user-details">
                                         <div class="input-box">
-                                            <span  class="details">Email</span>
-                                            <input type="text"   placeholder="Enter Your Email" required>
+                                            <span  class="details">User'ID</span>
+                                            <input type="text" v-model="loginDetails.userid" placeholder="Enter Your Email" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details" >Password</span>
-                                            <input type="password" id="new1"  placeholder="Enter Password" required>
+                                            <input type="password" id="new1" v-model="loginDetails.password" placeholder="Enter Password" required>
                                         </div>
                                         <div class="button">
-                                            <input type="submit" value="submit">
+                                            <input type="submit" value="submit" v-on:click="login">
                                         </div>
                                         <p>don't have an accout 
                                             <router-link to="/SignUpPage" class="signup">SignUp</router-link>
@@ -37,8 +37,48 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+Vue.use( axios)
+
 export default {
     name: "LoginSignup",
+    data(){
+        return {
+            loginDetails : {
+                userid : '',
+                password : ''
+            }
+        }
+    },
+    methods:{
+         login(e){
+            const newLogin = {
+                userID: this.loginDetails.userid,
+                password: this.loginDetails.password
+            };
+      console.log(newLogin);
+
+      axios.post("http://localhost:4444/api/auth/signin", newLogin)
+                .then((result)=>{
+                    localStorage.setItem( "ACCESS_TOKEN" , result.data.user.accessToken );
+                    localStorage.setItem( "MESSAGE" , result.data.message );
+                    localStorage.setItem( "NAME" , result.data.user.name );
+                    alert("Successfully Login !");
+                    console.log(result.data.user.accessToken);
+                    setTimeout(() => {
+                        this.$router.push("/ProfilePage");
+                    }, 1000);
+                    console.log("1");
+                })
+                .catch((err) =>{
+                    console.log(err);
+                    console.log("0");
+                })
+
+      e.preventDefault();
+        }
+    }
 };
 </script>
 

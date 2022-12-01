@@ -1,6 +1,7 @@
 import Router from 'vue-router';
 import LoginSignup from '../components/LoginSignup';
 import SignUpPage from '../components/SignUpPage'
+import ProfilePage from '../components/ProfilePage'
 
 
 const router = new Router({
@@ -15,7 +16,12 @@ const router = new Router({
            name: 'SignUpPage',
            path: '/SignUpPage',
            component:SignUpPage 
-       }
+       },
+       {
+        name: 'ProfilePage',
+        path: '/ProfilePage',
+        component:ProfilePage 
+        }
     ]
 });
 
