@@ -14,7 +14,9 @@ Vue.config.productionTip = false
 Vue.use(VueRouter);
 
 
+
 if(localStorage.ACCESS_TOKEN) {
+  console.log("access token",localStorage.ACCESS_TOKEN);
   setAuthHeader(localStorage.ACCESS_TOKEN)
 }else {
   setAuthHeader(false);

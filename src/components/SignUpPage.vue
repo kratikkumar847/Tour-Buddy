@@ -57,7 +57,7 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-Vue.use( axios)
+Vue.use(axios)
 
 export default {
   name: "SignUpPage",
@@ -85,8 +85,12 @@ export default {
                 .then((result)=>{
                     console.log(result);
                     console.log("1");
+                    setTimeout(() => {
+                this.$router.push("/");
+            }, 1000);
                 })
                 .catch((err) =>{
+                    alert("Give Proper Details")
                     console.log(err);
                     console.log("0");
                 })

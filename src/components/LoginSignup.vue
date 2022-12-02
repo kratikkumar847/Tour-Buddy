@@ -64,6 +64,7 @@ export default {
                     localStorage.setItem( "ACCESS_TOKEN" , result.data.user.accessToken );
                     localStorage.setItem( "MESSAGE" , result.data.message );
                     localStorage.setItem( "NAME" , result.data.user.name );
+                    localStorage.setItem( "USERID" , result.data.user.userID );
                     alert("Successfully Login !");
                     console.log(result.data.user.accessToken);
                     setTimeout(() => {
