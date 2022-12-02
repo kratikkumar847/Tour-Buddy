@@ -173,6 +173,9 @@ export default {
 .list-group-item {
     margin-top: 20px;
 }
+.container {
+    margin-left: 50px;
+}
 
 .signout {
     cursor: pointer;

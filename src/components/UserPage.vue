@@ -132,6 +132,11 @@ export default {
         text-align: left;
     }
 
+    button {
+        border: none;
+        
+    }
+
     .details {
         text-align: left;
     }

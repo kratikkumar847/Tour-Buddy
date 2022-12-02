@@ -15,7 +15,7 @@
                                     <div class="user-details">
                                         <div class="input-box">
                                             <span  class="details">User'ID</span>
-                                            <input type="text" v-model="loginDetails.userid" placeholder="Enter Your Email" required>
+                                            <input type="text" class="userid" v-model="loginDetails.userid" placeholder="Enter Your User'id" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details" >Password</span>
@@ -39,6 +39,7 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import Config from '../config'
 Vue.use( axios)
 
 export default {
@@ -59,7 +60,7 @@ export default {
             };
       console.log(newLogin);
 
-      axios.post("http://localhost:4444/api/auth/signin", newLogin)
+      axios.post(`${Config.baseUrl}/auth/signin`, newLogin)
                 .then((result)=>{
                     localStorage.setItem( "ACCESS_TOKEN" , result.data.user.accessToken );
                     localStorage.setItem( "MESSAGE" , result.data.message );
@@ -123,9 +124,14 @@ p {
     width: 100%;
     height: 60px;
     text-align: center;
+    margin-top: -5px;
     padding: 20px;
     margin: 50px 20%;
     margin-left: 0px;
+}
+
+.login {
+    margin-top: -45px;
 }
 
 .container {
@@ -141,6 +147,8 @@ p {
 #pass, #email {
     margin: 0px;
 }
+
+
 
 form .button {
     height: 30px;
@@ -167,8 +175,6 @@ form .button input {
     position: absolute;
     height: 3px;
     width: 60px;
-    left: 0;
-    margin-left:95px;
     bottom: 0;
     background: #9b59b6;
 }
@@ -177,7 +183,7 @@ form .button input {
     margin-top: 50px;
     height: 45px;
     border-radius: 5px;
-    margin-left: 30px;
+    margin-left: 20px;
     widows: 100%;
     outline: none;
     border: 1px solid #ccc;
@@ -233,8 +239,8 @@ input {
 img {
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 100%;
+    width: 108%;
+    height: 96%;
 }
 
 
@@ -250,6 +256,10 @@ img {
 
     .first{
         width: 0%;
+    }
+
+    .details {
+        display: none;
     }
 
     .second{
