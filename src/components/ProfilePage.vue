@@ -74,6 +74,7 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
+import Config from "@/config";
 import setAuthHeader from "../utils/setAuthHeader";
 
 Vue.use(axios);
@@ -98,7 +99,8 @@ export default {
             this.userid = localStorage.USERID;
             this.name = localStorage.NAME;
             setAuthHeader(localStorage.ACCESS_TOKEN);
-            const posturl = "http://localhost:4444/api/post";
+            // const posturl = "http://localhost:4444/api/post";
+            const posturl = `${Config.baseUrl}/post`;
             await axios
                 .get(posturl)
                 .then((data) => {
@@ -129,12 +131,14 @@ export default {
             }
             console.log(user);
             console.log(postID);
-            const url = `http://localhost:4444/api/${postID}/member/add`;
+            // const url = `http://localhost:4444/api/${postID}/member/add`;
+            const url = `${Config.baseUrl}/${postID}/member/add`;
             console.log("put url is this" , url);
             axios.put(url, user)
                 .then(()=>{
                     console.log(`${member} is added succesfully in postid ${postID}`);
-                    axios.get("http://localhost:4444/api/post/user")
+                    // axios.get("http://localhost:4444/api/post/user")
+                    axios.get(`${Config.baseUrl}/post/user`)
                         .then((data)=>{
                             console.log("These are all post by this user you can check here");
                             console.log(data);

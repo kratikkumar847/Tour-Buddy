@@ -57,6 +57,8 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import Config from "@/config";
+
 Vue.use(axios)
 
 export default {
@@ -81,7 +83,7 @@ export default {
       };
       
 
-      axios.post("http://localhost:4444/api/auth/signup", newSignUp)
+      axios.post(`${Config.baseUrl}/auth/signup`, newSignUp)
                 .then((result)=>{
                     console.log(result);
                     console.log("1");

@@ -61,6 +61,7 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import Config from '@/config'
 Vue.use( axios)
 
 export default{
@@ -91,10 +92,18 @@ export default{
                     noOfPeople : this.addpost.noOfPeople
                 };
                 // console.log(details);
-                await axios.post("http://localhost:4444/api/post/add", details)
+                // await axios.post("http://localhost:4444/api/post/add", details)
+                await axios.post(`${Config.baseUrl}post/add`, details)
                 .then((result)=>{
                     console.log(result);
                     console.log("The result is true");
+                    alert("Post is added To your account");
+                    this.addpost = {
+                    description : '',
+                    destination : '',
+                    noOfPeople : 0
+                }
+
                 })
                 .catch((err) =>{
                     console.log(err);

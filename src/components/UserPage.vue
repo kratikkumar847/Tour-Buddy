@@ -67,6 +67,7 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import Config from '@/config'
 Vue.use( axios)
 
 export default {
@@ -82,7 +83,8 @@ export default {
     created: async function(){
                 this.userid = localStorage.USERID;
                 this.name = localStorage.NAME;
-                axios.get("http://localhost:4444/api/user/jatin12")
+                // axios.get("http://localhost:4444/api/user/jatin12")
+                axios.get(`${Config.baseUrl}/user/${this.userid}`)
                     .then((data)=>{
                         this.userDetails = data.data.user
                         // console.log(this.userDetails)
@@ -91,7 +93,8 @@ export default {
                         console.log("user details error",error);
                     })
 
-                axios.get("http://localhost:4444/api/post/user")
+                // axios.get("http://localhost:4444/api/post/user")
+                axios.get(`${Config.baseUrl}/post/user`)
                     .then((data) => {
                         this.posts = data.data.post;
                         console.log(this.posts);
