@@ -1,39 +1,61 @@
 <template>
-    <div class="main-container">
-        <div class="small-container">
-            <div class="first">
-                <img src="../assets/logo1.jpeg" alt="image">
-            </div>
-            <div class="second">
-                    <div class="login">
-                        <div class="main-heading bg-success">
-                            <h3>TRAVEL BUDDY</h3>
-                        </div>
-                        <div class="container">
-                            <div class="title">Login</div>
-                                <form action="#" method="post">
-                                    <div class="user-details">
-                                        <div class="input-box">
-                                            <span  class="details">User'ID</span>
-                                            <input type="text" class="userid" v-model="loginDetails.userid" placeholder="Enter Your User'id" required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details" >Password</span>
-                                            <input type="password" id="new1" v-model="loginDetails.password" placeholder="Enter Password" required>
-                                        </div>
-                                        <div class="button">
-                                            <input type="submit" value="submit" v-on:click="login">
-                                        </div>
-                                        <p>don't have an accout 
-                                            <router-link to="/SignUpPage" class="signup">SignUp</router-link>
-                                        </p>
-                                    </div>
-                                </form>
-                        </div>
+ 
+   <!-- component -->
+<!-- component -->
+<div class="bg-white dark:bg-gray-900">
+        <div class="flex justify-center h-screen">
+            <div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url(https://images.unsplash.com/photo-1496950866446-3253e1470e8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
+                <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-10">
+                    <div class="backdrop-blur-sm rounded-md font-semibold p-5">
+                        <h2 class="text-4xl font-bold text-white">Tour Buddy</h2>
+                        
+                        <p class="max-w-xl mt-3 text-xl text-black"> Tour Buddy possess rich experience in tours and travel, and facilitates travellers to make their journey memorable.</p>
                     </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+                <div class="flex-1">
+                    <div class="text-center">
+                        <h2 class="text-4xl font-bold text-center text-gray-700 dark:text-white">Tour Buddy</h2>
+                        
+                        <p class="mt-3 text-gray-500 dark:text-gray-300">Sign in to access your account</p>
+                    </div>
+
+                    <div class="mt-8">
+                        <form>
+                            <div>
+                                <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Username</label>
+                                <input type="email" v-model="loginDetails.userid" name="email" id="email" placeholder="example@123" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                            </div>
+
+                            <div class="mt-6">
+                                <div class="flex justify-between mb-2">
+                                    <label for="password"  class="text-sm text-gray-600 dark:text-gray-200">Password</label>
+                                </div>
+
+                                <input type="password" v-model="loginDetails.password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                            </div>
+
+                            <div class="mt-6">
+                                <button v-on:click="login"
+                                    class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                    Sign in
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <p class="mt-6 text-sm text-center text-gray-400">Don&#x27;t have an account yet? <a href="#" class="text-blue-500 focus:outline-none focus:underline hover:underline">
+                                            <router-link to="/SignUpPage" class="signup">SignUp</router-link>
+                        </a>.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -83,191 +105,3 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-#new1 {
-    margin-top: 60px;
-    margin-left: 5px;
-}
-
-p {
-    margin-top: 80px;
-}
-
-.second {
-    background-color: rgb(231, 67, 67);
-    width: 40%;
-    text-align: center;
-}
-
-.first {
-    background-color: rgb(224, 112, 112);
-    width: 60%;
-}
-
-.second {
-    display: flex;
-    height: 80vh;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(180deg, #01f5f9, #9b59b6);
-}
-
-.main-heading {
-    width: 100%;
-    height: 60px;
-    text-align: center;
-    margin-top: -5px;
-    padding: 20px;
-    margin: 50px 20%;
-    margin-left: 0px;
-}
-
-.login {
-    margin-top: -45px;
-}
-
-.container {
-    max-width: 300px;
-    width: 100%;
-    background: #fff;
-    padding: 20px 25px;
-    border-radius: 5px;
-    height: 335px;
-    margin-top: -25px;
-}
-
-#pass, #email {
-    margin: 0px;
-}
-
-
-
-form .button {
-    height: 30px;
-    margin: 45px 0;
-}
-
-form .button input {
-    height: 100%;
-    width: 80%;
-    margin-top: 60px;
-    outline: none ;
-    color: #fff;
-    background: linear-gradient(180deg, #01f5f9, #9b59b6);
-}
-
-.container .title {
-    font-size: 25px;
-    font-weight: 500;
-    position: relative;
-}
-
-.container .title::before {
-    content: '';
-    position: absolute;
-    height: 3px;
-    width: 60px;
-    bottom: 0;
-    background: #9b59b6;
-}
-
-.user-details .input-box input{
-    margin-top: 50px;
-    height: 45px;
-    border-radius: 5px;
-    margin-left: 20px;
-    widows: 100%;
-    outline: none;
-    border: 1px solid #ccc;
-    padding-left: 8px;
-    font-size: 16px;
-    border-bottom-width: 2px;
-    transition: all 0.3s ease;
-}
-
-.user-details .input-box input:focus,
-.user-details .input-box input:valid{
-    border-color: #9b59b6;
-}
-
-.user-details{
-    margin-top: -20px;
-}
-
-.user-details .input-box .details{
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-.input-box{
-    height: 40px;
-}
-
-.title{
-    height: 40px;
-}
-
-input {
-    height: 18px;
-    width: 140px;
-}
-
-.main-container {
-    height: 625px;
-    background-color: rgb(223, 120, 61);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.small-container {
-    display: flex;
-    width: 90%;
-    height: 80%;
-}
-
-
-
-img {
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 108%;
-    height: 96%;
-}
-
-
-/* CSS for the Mobile View  */
-@media screen and (max-width: 768px) {
-    .small-container{
-        /* flex-wrap: wrap;
-        flex-direction : column; */
-    }
-    .main-container{
-        height: 100vh;
-    }
-
-    .first{
-        width: 0%;
-    }
-
-    .details {
-        display: none;
-    }
-
-    .second{
-        width: 100%;
-        height: 80vh;
-    }
-
-}
-
-
-</style>

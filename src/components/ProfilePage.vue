@@ -1,74 +1,37 @@
 <template>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand welcome" href="#">Welcome</a>
-                <p class="navbar-brand name" href="#">{{ this.name }}</p>
-
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <router-link to="/SignUpPage" class="navbar-brand">SignUp</router-link>
-                        <router-link to="/AddPost" class="navbar-brand addpost">Add Post</router-link>
-                        <button class="navbar-brand signout" @click="signout">
-                            SignOut
+    <div class="w-full h-full   bg-gray-200 pb-4  ">
+        <!-- component -->
+<nav class="font-sans mb-4 flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
+ 
+  <div class="space-x-4 mx-auto">
+                        <router-link to="/ProfilePage" class=" text-2xl tracking-wider uppercase  text-gray-700 font-bold  no-underline text-grey-darkest hover:text-blue-dark ml-2">Home</router-link>
+                         <router-link to="/UserPage" class="text-2xl tracking-wider uppercase  text-gray-700 font-bold  no-underline text-grey-darkest hover:text-blue-dark ml-2" href="#">Profile</router-link>       
+                        <router-link to="/AddPost" class=" text-2xl tracking-wider uppercase  text-gray-700 font-bold  no-underline text-grey-darkest hover:text-blue-dark ml-2">AddPost</router-link>
+                       
+    
+  </div>
+   <button class="bg-blue-600  text-xl  uppercase  text-white rounded-lg px-4 py-2 font-bold tracking-wide" @click="signout">
+                            logout
                         </button>
-                    </div>
-                </div>
-                <div>
-                    <router-link to="/UserPage" class="navbar-brand left-navbar first" href="#">{{ this.name
-                    }}</router-link><br />
-                    <router-link to="/UserPage" class="navbar-brand left-navbar second" href="#">{{ this.userid
-                    }}</router-link>
-                </div>
+</nav>
+            <div class="flex justify-center items-center">
+            <div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 md:max-w-6xl px-4 ">
+            <div v-for="(post,index) in posts" :key="index" class="bg-white  rounded-xl shadow-lg  p-5  ">
+                 <div class="font-semibold text-lg tracking-wide space-y-3">
+                    <h2>Destination : {{post.destination }} </h2>
+                    <h2>Total number of people : {{ post.noOfPeople }}</h2>
+                    <h2>Filled : {{post.member.length}}</h2>
+                    <h2>Description : {{post.description}}</h2>
+                    <button class="bg-blue-600 text-white rounded-lg py-2 px-5" >I'm coming</button>
+                 </div>
+
             </div>
-        </nav>
-       <h1>Tour Buddy</h1>
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-6" v-for="(post,index) in posts" :key="index">
-                    <div class="card newclass my-2 list-group-item-success shadow-lg">
-                        <div class="card-body">
-                            <p>{{ post.creator }}</p>
-                            <div class="row align-item-centre">
-                                <div class="col-sm-10 my-3">
-                                    <div class="list-group">
-                                        <li class="list-group-item">
-                                            Destination :
-                                            <span class="fw-bold">{{
-                                                    post.destination
-                                            }}</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Total number of People :
-                                            <span class="fw-bold">{{ post.noOfPeople }}</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Number of People filled :
-                                            <span class="fw-bold"> {{post.member.length}}</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Enter User id
-                                            <input class="fw-bold" :id="post.postID" v-model="posts[index].peoples" />
-                                        </li>
-                                        <li class="list-group-item">
-                                            Description :
-                                            <span class="fw-bold">{{
-                                                    post.description
-                                            }}</span>
-                                        </li>
-                                        <button class="btn btn-primary"  @click="addpeople(  post.postID , posts[index].peoples )">
-                                            submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br /><br /><br />
-                </div>
             </div>
-        </div>
+            </div>
     </div>
+
+
+    
 </template>
 
 <script>
@@ -155,74 +118,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-* {
-    margin: 0;
-    padding: 0;
-}
-
-.first {
-    font-size: 30px;
-    margin-right: 50px;
-    margin-left: 0;
-}
-
-.second {
-    font-size: 15px;
-    margin-right: 50px;
-    margin-left: 0;
-}
-
-.list-group-item {
-    margin-top: 20px;
-}
-.container {
-    margin-left: 50px;
-}
-
-.signout {
-    cursor: pointer;
-    border: none;
-    background-color: white;
-}
-
-.addpost {
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
-nav {
-    height: 100px;
-    background-color: red;
-}
-
-.name {
-    margin-top: 0px;
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
-.newclass {
-    width: 600px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-}
-
-i {
-    margin-left: 50px;
-}
-
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-</style>

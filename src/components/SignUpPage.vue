@@ -88,8 +88,8 @@ export default {
                     console.log(result);
                     console.log("1");
                     setTimeout(() => {
-                    this.$router.push("/");
-                    }, 1000);
+                this.$router.push("/");
+            }, 1000);
                 })
                 .catch((err) =>{
                     alert("Give Proper Details")
