@@ -93,7 +93,8 @@ export default{
                 };
                 // console.log(details);
                 // await axios.post("http://localhost:4444/api/post/add", details)
-                await axios.post(`${Config.baseUrl}post/add`, details)
+                // ${Config.baseUrl}/auth/signin
+                await axios.post(`${Config.baseUrl}/post/add`, details)
                 .then((result)=>{
                     console.log(result);
                     console.log("The result is true");
