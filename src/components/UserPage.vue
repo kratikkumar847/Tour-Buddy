@@ -1,39 +1,23 @@
 <template>
   <div>
     <nav
-      class="font-sans  flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-gray-200 shadow sm:items-baseline w-full"
-    >
+      class="font-sans  flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-gray-200 shadow sm:items-baseline w-full">
       <div class="space-x-4 mx-auto">
-        <router-link
-          to="/ProfilePage"
+        <router-link to="/ProfilePage"
+          class="text-2xl tracking-wider uppercase text-gray-700 font-bold no-underline text-grey-darkest hover:text-blue-dark ml-2">Home</router-link>
+        <router-link to="/UserPage"
           class="text-2xl tracking-wider uppercase text-gray-700 font-bold no-underline text-grey-darkest hover:text-blue-dark ml-2"
-          >Home</router-link
-        >
-        <router-link
-          to="/UserPage"
-          class="text-2xl tracking-wider uppercase text-gray-700 font-bold no-underline text-grey-darkest hover:text-blue-dark ml-2"
-          href="#"
-          >Profile</router-link
-        >
-        <router-link
-          to="/AddPost"
-          class="text-2xl tracking-wider uppercase text-gray-700 font-bold no-underline text-grey-darkest hover:text-blue-dark ml-2"
-          >AddPost</router-link
-        >
+          href="#">Profile</router-link>
+        <router-link to="/AddPost"
+          class="text-2xl tracking-wider uppercase text-gray-700 font-bold no-underline text-grey-darkest hover:text-blue-dark ml-2">AddPost</router-link>
       </div>
-      <button
-        class="bg-blue-600 text-xl uppercase text-white rounded-lg px-4 py-2 font-bold tracking-wide"
-        @click="signout"
-      >
+      <button class="bg-blue-600 text-xl uppercase text-white rounded-lg px-4 py-2 font-bold tracking-wide"
+        @click="signout">
         logout
       </button>
     </nav>
-    <div
-      class="flex md:flex-row flex-col md:h-screen md:space-x-0 md:space-y-0 space-y-4"
-    >
-      <div
-        class="flex flex-col justify-center items-center font-semibold tracking-tighter md:w-1/2"
-      >
+    <div class="flex md:flex-row flex-col md:h-screen md:space-x-0 md:space-y-0 space-y-4">
+      <div class="flex flex-col justify-center items-center font-semibold tracking-tighter md:w-1/2">
         <div class="flex text-4xl mb-4 space-x-3">
           <h2 class="text-gray-500">Welcome</h2>
           <p class="" href="#">{{ this.name }} !!</p>
@@ -46,23 +30,18 @@
         </div>
       </div>
 
-      <div
-        class="md:w-1/2 overflow-y-scroll   flex flex-col py-5 space-y-4 items-center bg-black"
-      >
+      <div class="md:w-1/2 overflow-y-scroll   flex flex-col py-5 space-y-4 items-center bg-black">
         <h2 class="text-white text-2xl font-bold">Your posts</h2>
-        <div
-          v-for="post in posts"
-          :key="post.postID"
-          class="bg-white rounded-xl shadow-lg p-5 w-3/4 md:w-1/2"
-        >
+        <div v-for="post in posts" :key="post.postID" class="bg-white rounded-xl shadow-lg p-5 w-3/4 md:w-1/2">
           <div class="font-semibold text-xl tracking-wide space-y-3">
             <h2>Destination : {{ post.destination }}</h2>
             <h2>Total number of people : {{ post.noOfPeople }}</h2>
             <h2>Description : {{ post.description }}</h2>
             <h2>
-              People are wants to go :
+              People wants to go :
               <p v-for="(member, i) in post.member" :key="i">{{ member }}</p>
             </h2>
+            <button class="bg-red-600 text-white rounded-lg py-1 px-4" @click="deletePost(post)">Delete Post</button>
           </div>
         </div>
       </div>
@@ -115,9 +94,31 @@ export default {
     signout: function () {
       localStorage.clear();
       setTimeout(() => {
+        this.$toast.success("Logged out");
         this.$router.push("/");
       }, 1000);
     },
+    deletePost : function (post) {
+      const postID = post._id
+      console.log(postID);
+      axios
+      .delete(`${Config.baseUrl}/post/${postID}`)
+        .then(() => {
+          this.$toast.success("Post is Deleted SucessFully");
+          axios.get(`${Config.baseUrl}/post/user`)
+            .then((data) => {
+                this.posts = data.data.post;
+                console.log(this.posts);
+            })
+            .catch((error) => {
+                console.log("get user posts error", error);
+            });
+        })
+          .catch((error) => {
+            this.$toast.error("Post is not Deleted");
+            console.log("get user posts error", error);
+      });
+    }
   },
 };
 </script>

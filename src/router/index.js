@@ -34,7 +34,8 @@ const router = new Router({
         name: 'UserPage',
         path: '/UserPage',
         component:UserPage 
-        }
+        },
+       
     ]
 });
 

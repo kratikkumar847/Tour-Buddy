@@ -88,12 +88,12 @@ export default {
                 .then((result) => {
                     console.log(result);
                     console.log("The result is true");
-                    alert("Post is added To your account");
                     this.addpost = {
                         description: "",
                         destination: "",
                         noOfPeople: 0,
                     };
+                    this.$toast.success("Post is added SucessFully");
                 })
                 .catch((err) => {
                     console.log(err);
@@ -103,6 +103,7 @@ export default {
         signout() {
             localStorage.clear();
             setTimeout(() => {
+                this.$toast.success("Logged out");
                 this.$router.push("/");
             }, 1000);
         },
