@@ -25,14 +25,14 @@
         </div>
 
         <div class="policy">
-          <input type="checkbox" />
+          <input type="checkbox" v-model="terms"/>
           <h3>I accept all terms & condition</h3>
         </div>
-        <div class="input-box button">
+        <div class="input-box button" v-if="terms">
           <input type="Submit" value="Register Now" @click="signup" />
         </div>
-        <div class="text">
-          <h3>
+        <div class="text" v-if="terms">
+          <h3 >
             Already have an account? <router-link to="/">Login now</router-link>
           </h3>
         </div>
@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       loading : false,
+      terms : false,
       signupDetails: {
         name: "",
         userID: "",

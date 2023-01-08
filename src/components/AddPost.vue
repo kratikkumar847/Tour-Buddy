@@ -28,7 +28,7 @@
                 <input type="text" class="border p-1 rounded-md shadow-sm" name="destination"
                     v-model="addpost.destination">
 
-                <label for="noOfPeople">noOfPeople</label>
+                <label for="noOfPeople">Total People</label>
 
                 <input type="text" class="border p-1 rounded-md shadow-sm" name="noOfPeople"
                     v-model="addpost.noOfPeople">
